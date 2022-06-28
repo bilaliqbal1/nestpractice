@@ -19,7 +19,13 @@ export class SampleService {
   }
 
   async findAll() {
-    const result = await this.userModel.find();
+    const result = await this.userModel.aggregate([
+      { $sort: { name: -1 } },
+      // { $group: { _id: { name: '$name', age: '$details.age' } } },
+      // { $match: { '_id.age': 21 } },
+      // { $count : "nameAndage"} //to count name and age
+    ]);
+    // , this.userModel.aggregate([{ $count: 'name' }]);
     return { result };
   }
 

@@ -27,7 +27,7 @@ export class SampleController {
   @Get()
   async findAll() {
     const result = await this.sampleService.findAll();
-    return { result };
+    return result;
   }
 
   @Get(':id')
